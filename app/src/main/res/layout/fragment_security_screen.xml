@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg"
+    tools:context=".ui.SecurityScreenFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security screen"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:text="Enter your passcode"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/btn1"
+                android:layout_width="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="30dp"
+                android:src="#959595"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/btn2"
+                android:layout_width="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="30dp"
+                android:src="#959595"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/btn3"
+                android:layout_width="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="30dp"
+                android:src="#959595"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/btn4"
+                android:layout_width="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="10dp"
+                android:src="#959595"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclreView"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:text="Forgot password?"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
