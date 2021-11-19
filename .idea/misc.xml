@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bacha/AndroidStudioProjects/Sum10/app/src/main/res/drawable/dots_marked.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/bacha/AndroidStudioProjects/Sum10/app/src/main/res/drawable/dots_regular.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/bacha/AndroidStudioProjects/Sum10/app/src/main/res/drawable/number_button_shape.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/bacha/AndroidStudioProjects/Sum10/app/src/main/res/layout/fragment_security_screen.xml" value="0.5" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Sum10/app/src/main/res/drawable/ic_bg.xml" value="0.3828125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Sum10/app/src/main/res/drawable/number_button_shape.xml" value="0.3828125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Sum10/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />

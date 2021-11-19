@@ -1,14 +1,11 @@
 package com.example.sum10.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log.d
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sum10.R
 import com.example.sum10.adapter.SecurityScreenAdapter
@@ -18,20 +15,26 @@ class SecurityScreenFragment : Fragment() {
 
     private var _binding: FragmentSecurityScreenBinding? = null
     private val binding get() = _binding!!
-    
-    private lateinit var securityScreenAdapter: SecurityScreenAdapter
-    private val numbers = mutableListOf<Number>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    private lateinit var securityScreenAdapter: SecurityScreenAdapter
+    private val passcode = mutableListOf<Number>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         _binding = FragmentSecurityScreenBinding.inflate(inflater, container, false)
-        init()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
     }
 
     private fun init() {
         initRecyclerView()
-        collectNumbers()
+        clickers()
     }
 
     private fun initRecyclerView() {
@@ -43,24 +46,50 @@ class SecurityScreenFragment : Fragment() {
     }
 
 
-    private fun collectNumbers() {
+    private fun clickers() {
+        val passcodeDots = listOf<View>(binding.btn1, binding.btn2, binding.btn3, binding.btn4)
         securityScreenAdapter.clicked = {
-            numbers.add(it.number)
-            binding.btn1.setImageResource(R.color.black)
-            Toast.makeText(requireContext(), it.number.toString(), Toast.LENGTH_SHORT).show()
-        }
+            if (it.isNumber) {
+                passcode.add(it.number)
+                passcodeDots[passcode.lastIndex].setBackgroundResource(R.drawable.dots_marked)
+                if (passcode.size == 4) {
+                    if (checkPassword()) {
+                        Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        passcode.clear()
+                        for (i in passcodeDots) {
+                            i.setBackgroundResource(R.drawable.dots_regular)
+                        }
+                    }
+                }
+//                Toast.makeText(requireContext(), it.number.toString(), Toast.LENGTH_SHORT).show()
 
+            } else if (it.isBackSpace) {
+                val numberPosition = passcode.size - 1
+                if(passcode.isEmpty()) {
+                } else if (numberPosition == 3) {
+                    passcode.clear()
+                    for (i in passcodeDots) {
+                        i.setBackgroundResource(R.drawable.dots_regular)
+                    }
+                } else {
+                    passcode.removeAt(numberPosition)
+                    passcodeDots[numberPosition].setBackgroundResource(R.drawable.dots_regular)
+                }
+
+            }
+        }
     }
 
-//    private fun checkPassword() : Boolean {
-//        if(numbers.size == 4) {
-//            d("Log", numbers.toString())
-//            return numbers[0] == 0 && numbers[1] == 9 && numbers[2] == 3 && numbers[3] == 4
-//         } else {
-//            d("LogElse", numbers.toString())
-//             return false
-//        }
-//    }
+    private fun checkPassword(): Boolean {
+        if (passcode.size == 4) {
+//            d("Log", passcode.toString())
+            return passcode[0] == 0 && passcode[1] == 9 && passcode[2] == 3 && passcode[3] == 4
+        } else {
+//            d("LogElse", passcode.toString())
+            return false
+        }
+    }
 
 
     override fun onDestroyView() {

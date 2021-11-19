@@ -14,18 +14,18 @@ class SecurityScreenAdapter : RecyclerView.Adapter<SecurityScreenAdapter.Securit
     lateinit var clicked: onClick
 
     private var numbers = listOf(
-        Number(1),
-        Number(2),
-        Number(3),
-        Number(4),
-        Number(5),
-        Number(6),
-        Number(7),
-        Number(8),
-        Number(9),
-        Number(R.drawable.ic_touchid, false, true),
-        Number(0),
-        Number(R.drawable.ic_backspace, true))
+        Number(1, isNumber = true),
+        Number(2, isNumber = true),
+        Number(3, isNumber = true),
+        Number(4, isNumber = true),
+        Number(5, isNumber = true),
+        Number(6, isNumber = true),
+        Number(7, isNumber = true),
+        Number(8, isNumber = true),
+        Number(9, isNumber = true),
+        Number(R.drawable.ic_touchid, isTouchId =  true),
+        Number(0, isNumber = true),
+        Number(R.drawable.ic_backspace, isBackSpace = true))
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SecurityScreenViewHolder (
         NumberItemBinding.inflate(
@@ -42,10 +42,10 @@ class SecurityScreenAdapter : RecyclerView.Adapter<SecurityScreenAdapter.Securit
         private lateinit var model: Number
         fun onBind() {
             model = numbers[adapterPosition]
-            if(!model.touchId && !model.backSpace) {
+            if(model.isNumber) {
                 binding.tvNumber.text = model.number.toString()
             } else {
-                if(model.touchId && !model.backSpace) {
+                if(model.isTouchId) {
                     binding.tvNumber.setBackgroundResource(R.drawable.ic_touchid)
                     binding.tvNumber.text = ""
                 }
